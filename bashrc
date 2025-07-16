@@ -10,7 +10,7 @@ alias rmf="rm -f"
 alias open="xdg-open $1"
 alias projects="cd ~/projects && ls -l"
 alias n="/opt/nvim-linux-x86_64/bin/nvim $1"
-alias v="which (vim)"
+alias v="vim"
 alias ll="ls -rthl"
 alias run-cleaned-data="docker run --name cleaned-data -d --rm areftd/postgres-aol-data-cleaned"
 alias working-db="docker run --name working-db  -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=test123 -v ~/Studium/Datenbank/myDataVolumen:/var/lib/postgresql/data -d --rm postgres"
@@ -38,5 +38,13 @@ esac
 #  pnpm end
 
 # neovim path
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:$HOME/.local/bin/env:/opt/nvim-linux-x86_64/bin"
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
+
+. "$HOME/.local/bin/env"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+eval "$(starship init bash)"
