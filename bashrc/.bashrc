@@ -120,6 +120,7 @@ alias ..="cd .."
 alias .2="cd ../.."
 alias .3="cd ../../.."
 alias xx="exit"
+alias poff="shutdown -h now"
 alias refresh="source ~/.bashrc"
 alias profile="vim ~/.bashrc"
 alias grep="grep -i"
@@ -127,8 +128,8 @@ alias rmf="rm -f"
 alias open="xdg-open $1"
 alias v="vim"
 alias ll="ls -rthl"
-# alias android="~/android-studio/bin/studio.sh & "
-#git commands
+
+# git commands
 alias ga="git add $1"
 alias gs="git status"
 alias gc="git commit"
@@ -136,10 +137,23 @@ alias gb="git branch"
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias glp="git log --pretty"
-alias poff="poweroff"
+
+# docker commands
 alias dps="docker ps -a"
+alias dcr="docker compose run --rm"
+
+# plasma stuff
 alias restartPlasma="systemctl --user restart plasma-plasmashell.service"
+
+alias n="~/nvim-linux-x86_64/bin/nvim"
+
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+export PATH="~/nvim-linux-x86_64/bin:$JAVA_HOME/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
