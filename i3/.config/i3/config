@@ -17,7 +17,7 @@
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
 
-exec_always --no-startup-id "setxkbmap -layout de,ara -option grp:crtl_alt_toggle"
+exec_always --no-startup-id "setxkbmap -layout de,ara -option grp:ctrl_alt_toggle"
 # kill any hanging polybar processes
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
@@ -50,6 +50,18 @@ bindsym Mod1+F3 exec --no-startup-id notify-send "Audio Output" "$(pactl get-def
 
 bindsym Mod1+F1 exec --no-startup-id pactl set-default-sink alsa_output.pci-0000_0c_00.4.analog-stereo
 bindsym Mod1+F2 exec --no-startup-id pactl set-default-sink alsa_output.pci-0000_0a_00.1.hdmi-stereo
+
+# Brightness up
+bindsym XF86MonBrightnessUp exec --no-startup-id bash -c "brightnessctl set +10% && notify-send 'Brightness ↑'"
+
+# Brightness down
+bindsym XF86MonBrightnessDown exec --no-startup-id bash -c "brightnessctl set 10%- && notify-send 'Brightness ↓'"
+
+# Fullscreen screenshot
+bindsym Print exec flameshot full
+
+# Select area with mouse
+bindsym Shift+Print exec flameshot gui
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
