@@ -51,6 +51,9 @@ bindsym Mod1+F3 exec --no-startup-id notify-send "Audio Output" "$(pactl get-def
 bindsym Mod1+F1 exec --no-startup-id pactl set-default-sink alsa_output.pci-0000_0c_00.4.analog-stereo
 bindsym Mod1+F2 exec --no-startup-id pactl set-default-sink alsa_output.pci-0000_0a_00.1.hdmi-stereo
 
+
+bindsym Mod1+F0 exec --no-startup-id pactl set-default-sink alsa_output.pci-0000_0c_00.4.iec958-stereo
+
 # Brightness up
 bindsym XF86MonBrightnessUp exec --no-startup-id bash -c "brightnessctl set +10% && notify-send 'Brightness ↑'"
 
@@ -137,7 +140,7 @@ bindsym Mod1+Shift+space floating toggle
 bindsym Mod1+space focus mode_toggle
 
 # focus the parent container
-# bindsym Mod1+a focus parent
+bindsym Mod1+a focus parent
 
 # focus the child container
 #bindsym Mod1+d focus child
@@ -193,6 +196,7 @@ bindsym Mod1+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -223,6 +227,11 @@ bindsym Mod1+r mode "resize"
 
 assign [class="Google-chrome"] 1
 bindsym Mod4+b exec --no-startup-id i3-msg '[class="Google-chrome"] focus' || google-chrome-stable
+
+
+# center dolphin in floating mode
+exec --no-startup-id "export QT_QPA_PLATFORMTHEME=qt5ct"
+for_window [class="dolphin"] floating enable, move position center
 
 gaps inner 5
 gaps outer 5
@@ -276,7 +285,8 @@ set $mantle    #181825
 set $crust     #11111b
 
 # target                 title     bg    text      indicator    border
-client.focused           $mantle   $mauve $mantle  $rosewater $mauve
+# client.focused           $mantle   $mauve $mantle  $rosewater $mauve
+client.focused           $mantle   $green $mantle  $rosewater $green
 client.focused_inactive  $overlay0 $base  $text    $rosewater $overlay0
 client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
 client.urgent            $peach    $base  $peach   $overlay0  $peach
