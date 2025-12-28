@@ -127,7 +127,7 @@ alias grep="grep -i"
 alias rmf="rm -f"
 alias open="xdg-open $1"
 alias v="vim"
-alias ll="ls -rthl"
+alias ll="ls -rthl --color"
 
 # git commands
 alias ga="git add $1"
