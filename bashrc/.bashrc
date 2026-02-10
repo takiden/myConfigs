@@ -126,7 +126,8 @@ alias profile="vim ~/.bashrc"
 alias grep="grep -i"
 alias rmf="rm -f"
 alias open="xdg-open $1"
-alias v="vim"
+alias v="$(which vim)"
+alias n="/opt/nvim-linux-x86_64/bin/nvim"
 alias ll="ls -rthl --color"
 
 # git commands
@@ -145,10 +146,9 @@ alias dcr="docker compose run --rm"
 # plasma stuff
 alias restartPlasma="systemctl --user restart plasma-plasmashell.service"
 
-alias n="~/nvim-linux-x86_64/bin/nvim"
 
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-export PATH="~/nvim-linux-x86_64/bin:$JAVA_HOME/bin:$PATH"
+export PATH="/opt/nvim-linux-x86_64/bin:$JAVA_HOME/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
