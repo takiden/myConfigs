@@ -121,6 +121,7 @@ alias .2="cd ../.."
 alias .3="cd ../../.."
 alias xx="exit"
 alias poff="shutdown -h now"
+alias sus="systemctl suspend"
 alias refresh="source ~/.bashrc"
 alias profile="vim ~/.bashrc"
 alias grep="grep -i"
@@ -129,6 +130,7 @@ alias open="xdg-open $1"
 alias v="$(which vim)"
 alias n="/opt/nvim-linux-x86_64/bin/nvim"
 alias ll="ls -rthl --color"
+alias n="~/nvim-linux-x86_64/bin/nvim"
 
 # git commands
 alias ga="git add $1"
@@ -146,7 +148,6 @@ alias dcr="docker compose run --rm"
 # plasma stuff
 alias restartPlasma="systemctl --user restart plasma-plasmashell.service"
 
-
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export PATH="/opt/nvim-linux-x86_64/bin:$JAVA_HOME/bin:$PATH"
 
@@ -156,4 +157,4 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+# source <(ng completion script)
