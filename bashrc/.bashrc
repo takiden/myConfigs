@@ -131,7 +131,7 @@ alias v="$(which vim)"
 alias n="/opt/nvim-linux-x86_64/bin/nvim"
 alias ll="ls -rthl --color"
 alias n="~/nvim-linux-x86_64/bin/nvim"
-
+alias y="yazi"
 # git commands
 alias ga="git add $1"
 alias gs="git status"
