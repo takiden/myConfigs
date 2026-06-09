@@ -158,3 +158,13 @@ export NVM_DIR="$HOME/.nvm"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+export PATH="$HOME/.local/bin:/home/takiden/go/bin:/usr/local/texlive/2026/bin/x86_64-linux:$PATH"
+
+
+# pnpm
+export PNPM_HOME="/home/takiden/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end

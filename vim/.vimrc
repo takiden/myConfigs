@@ -38,6 +38,9 @@ set tabstop=2       " Number of spaces a tab counts for
 set shiftwidth=2    " Number of spaces to use for each step of (auto)indent
 set expandtab       " Use spaces instead of tab characters
 set smartindent     " Auto-indent new lines
+set wrap
+set linebreak
+set breakindent
 
 " ----- Visual Enhancements -----
 " Enable syntax highlighting

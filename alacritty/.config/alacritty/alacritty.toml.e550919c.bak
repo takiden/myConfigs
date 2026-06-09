@@ -27,8 +27,3 @@ style = "Italic"
 # family = "MesloLGS Nerd Font Mono"
 family = "CaskaydiaCove Nerd Font"
 style = "Regular"
-
-[[keyboard.bindings]]
-key = "Return"
-mods = "Shift"
-chars = "\u001B\r"
