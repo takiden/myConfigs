@@ -128,7 +128,6 @@ alias grep="grep -i"
 alias rmf="rm -f"
 alias open="xdg-open $1"
 alias v="$(which vim)"
-alias n="/opt/nvim-linux-x86_64/bin/nvim"
 alias ll="ls -rthl --color"
 alias n="~/nvim-linux-x86_64/bin/nvim"
 alias y="yazi"
@@ -137,6 +136,7 @@ alias ga="git add $1"
 alias gs="git status"
 alias gc="git commit"
 alias gb="git branch"
+alias gbr="git branch -rvv"
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias glp="git log --pretty"
@@ -158,8 +158,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
-export PATH="$HOME/.local/bin:/home/takiden/go/bin:/usr/local/texlive/2026/bin/x86_64-linux:$PATH"
 
+# Go Path
+export GOPATH=/home/takiden/goProjects
 
 # pnpm
 export PNPM_HOME="/home/takiden/.local/share/pnpm"
@@ -168,3 +169,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+export GEMINI_API_KEY=""
+
+export PATH="$HOME/.local/bin:/home/takiden/go/bin:/usr/local/texlive/2026/bin/x86_64-linux:$PATH:$GOPATH/bin:/home/takiden/.cargo/bin"
