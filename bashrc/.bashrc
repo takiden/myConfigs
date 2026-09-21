@@ -129,7 +129,7 @@ alias rmf="rm -f"
 alias open="xdg-open $1"
 alias v="$(which vim)"
 alias ll="ls -rthl --color"
-alias n="~/nvim-linux-x86_64/bin/nvim"
+alias n="$HOME/nvim-linux-x86_64/bin/nvim"
 alias y="yazi"
 # git commands
 alias ga="git add $1"
@@ -150,18 +150,13 @@ alias dcr="docker compose run --rm"
 alias restartPlasma="systemctl --user restart plasma-plasmashell.service"
 
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-export PATH="/opt/nvim-linux-x86_64/bin:$JAVA_HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$JAVA_HOME/bin:$HOME/nvim-linux-x86_64/bin:$PATH"
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# Load Angular CLI autocompletion.
-# source <(ng completion script)
-
-# Go Path
-export GOPATH=/home/takiden/goProjects
 
 # pnpm
 export PNPM_HOME="/home/takiden/.local/share/pnpm"
@@ -171,6 +166,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-export GEMINI_API_KEY=""
+export PATH="$HOME/.local/bin:/home/takiden/go/bin:/usr/local/texlive/2026/bin/x86_64-linux:$PATH:/home/takiden/.cargo/bin"
 
-export PATH="$HOME/.local/bin:/home/takiden/go/bin:/usr/local/texlive/2026/bin/x86_64-linux:$PATH:$GOPATH/bin:/home/takiden/.cargo/bin"
+# Add Go paths
+export PATH="$PATH:/usr/local/go/bin"
+[ -n "$(command -v go)" ] && export PATH="$PATH:$(go env GOPATH)/bin"
+
+# Remove duplicate entries from PATH while maintaining order
+export PATH="$(echo -n "$PATH" | awk -v RS=: -v ORS=: '!seen[$0]++' | sed 's/:$//')"
