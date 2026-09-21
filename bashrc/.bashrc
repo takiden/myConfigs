@@ -149,6 +149,8 @@ alias dcr="docker compose run --rm"
 # plasma stuff
 alias restartPlasma="systemctl --user restart plasma-plasmashell.service"
 
+export OPENROUTER_API_KEY="$(cat $HOME/.openrouterApiKey)"
+
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export PATH="$HOME/.local/bin:$JAVA_HOME/bin:$HOME/nvim-linux-x86_64/bin:$PATH"
 
