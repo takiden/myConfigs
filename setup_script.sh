@@ -72,8 +72,21 @@ sudo udevadm control --reload
 sudo udevadm trigger
 }
 
+add_simlinks(){
+
+  cd $HOME
+  git clone git@github.com:takiden/myConfigs.git
+  ln -s /home/takiden/myConfigs/bashrc/.bashrc .bashrc
+  ln -s /home/takiden/myConfigs/git/.gitconfig .gitconfig
+  ln -s /home/takiden/myConfigs/tmux/.tmux.conf .tmux.conf
+  ln -s /home/takiden/myConfigs/vim/.vimrc .vimrc
+
+  cd ~/.config && ln -s /home/takiden/nvimConfig/. nvim
+}
+
 # install_anitgravity
 # install_go
 # install_nvim $HOME
 # add_keyboard_rules
+# add_simlinks
 
