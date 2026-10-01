@@ -59,6 +59,21 @@ install_tmux_plugins() {
   mkdir -p ~/.config/tmux/plugins/catppuccin
   git clone -b v2.3.1 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 }
+
+add_keyboard_rules() {
+sudo touch /etc/udev/rules.d/99-keyboard.rules
+
+sudo echo "# Allow access for VIA/Vial (Raw HID)" >> /etc/udev/rules.d/99-keyboard.rules
+sudo echo 'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", TAG+="uaccess", TAG+="udev-acl"' >> /etc/udev/rules.d/99-keyboard.rules
+sudo echo 
+sudo echo "# Allow flashing for RP2040 (RP2040 Bootloader)" >> /etc/udev/rules.d/99-keyboard.rules
+sudo echo 'SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", TAG+="uaccess"' >> /etc/udev/rules.d/99-keyboard.rules
+sudo udevadm control --reload
+sudo udevadm trigger
+}
+
 # install_anitgravity
 # install_go
 # install_nvim $HOME
+# add_keyboard_rules
+
