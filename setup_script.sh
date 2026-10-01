@@ -52,6 +52,13 @@ install_packages() {
   sudo dnf install -y rust cargo ripgrep tree-sitter-cli 
 }
 
+install_tmux_plugins() {
+  # TPM
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  # theme:
+  mkdir -p ~/.config/tmux/plugins/catppuccin
+  git clone -b v2.3.1 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+}
 # install_anitgravity
 # install_go
-install_nvim $HOME
+# install_nvim $HOME
