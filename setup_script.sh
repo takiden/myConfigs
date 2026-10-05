@@ -83,10 +83,22 @@ add_simlinks(){
   cd ~/.config && ln -s /home/takiden/nvimConfig/. nvim
 }
 
+install_nvm(){
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+  if [ $0 -eq 0] then
+    source ~/.bashrc
+    nvm install --lts
+    echo "node: $(node --version), npm: $(npm --version)"
+  else
+    echo "could not install NVM"
+  fi
+}
+
+# install_nvm
 # install_anitgravity
 # install_go
 # install_nvim $HOME
 # add_keyboard_rules
 # add_simlinks
 # install_tmux_plugins
-install_packages
+# install_packages
