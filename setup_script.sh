@@ -61,15 +61,18 @@ install_tmux_plugins() {
 }
 
 add_keyboard_rules() {
-sudo touch /etc/udev/rules.d/99-keyboard.rules
+  sudo tee /etc/udev/rules.d/99-keyboard.rules > /dev/null <<'EOF'
+# Allow access for VIA/Vial (Raw HID)
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", TAG+="uaccess", TAG+="udev-acl"
 
-sudo echo "# Allow access for VIA/Vial (Raw HID)" >> /etc/udev/rules.d/99-keyboard.rules
-sudo echo 'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", TAG+="uaccess", TAG+="udev-acl"' >> /etc/udev/rules.d/99-keyboard.rules
-sudo echo 
-sudo echo "# Allow flashing for RP2040 (RP2040 Bootloader)" >> /etc/udev/rules.d/99-keyboard.rules
-sudo echo 'SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", TAG+="uaccess"' >> /etc/udev/rules.d/99-keyboard.rules
-sudo udevadm control --reload
-sudo udevadm trigger
+# Allow flashing for RP2040 (RP2040 Bootloader)
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", TAG+="uaccess"
+EOF
+  if [ $? -ne 0 ]; then
+    return 1
+  fi
+
+  sudo udevadm control --reload && sudo udevadm trigger
 }
 
 add_simlinks(){
@@ -85,7 +88,7 @@ add_simlinks(){
 
 install_nvm(){
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
-  if [ $0 -eq 0] then
+  if [ $? -eq 0 ]; then
     source ~/.bashrc
     nvm install --lts
     echo "node: $(node --version), npm: $(npm --version)"
@@ -94,11 +97,46 @@ install_nvm(){
   fi
 }
 
-# install_nvm
-# install_anitgravity
-# install_go
-# install_nvim $HOME
-# add_keyboard_rules
-# add_simlinks
-# install_tmux_plugins
-# install_packages
+exit_script() {
+  echo "Exiting setup."
+  exit 0
+}
+
+main() {
+  local selection
+
+  while true; do
+    printf '\nSetup menu\n'
+    printf '%s\n' \
+      '1) Install NVM and Node.js' \
+      '2) Install Antigravity' \
+      '3) Install Go' \
+      '4) Install Neovim' \
+      '5) Add keyboard rules' \
+      '6) Add dotfile symlinks' \
+      '7) Install tmux plugins' \
+      '8) Install packages' \
+      '9) Exit'
+
+    if ! read -r -p 'Select an action [1-9]: ' selection; then
+      exit_script
+    fi
+
+    case "$selection" in
+      1) install_nvm ;;
+      2) install_anitgravity ;;
+      3) install_go ;;
+      4) install_nvim "$HOME" ;;
+      5) add_keyboard_rules ;;
+      6) add_simlinks ;;
+      7) install_tmux_plugins ;;
+      8) install_packages ;;
+      9) exit_script ;;
+      *) echo 'Invalid selection. Enter a number from 1 to 9.' ;;
+    esac
+  done
+}
+
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+  main
+fi
