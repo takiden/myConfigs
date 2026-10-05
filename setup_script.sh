@@ -49,7 +49,7 @@ install_nvim() {
 }
 
 install_packages() {
-  sudo dnf install -y rust cargo ripgrep tree-sitter-cli 
+  sudo apt install -y rust cargo ripgrep tree-sitter-cli ghostty
 }
 
 install_tmux_plugins() {
@@ -75,7 +75,6 @@ sudo udevadm trigger
 add_simlinks(){
 
   cd $HOME
-  git clone git@github.com:takiden/myConfigs.git
   ln -s /home/takiden/myConfigs/bashrc/.bashrc .bashrc
   ln -s /home/takiden/myConfigs/git/.gitconfig .gitconfig
   ln -s /home/takiden/myConfigs/tmux/.tmux.conf .tmux.conf
@@ -89,4 +88,5 @@ add_simlinks(){
 # install_nvim $HOME
 # add_keyboard_rules
 # add_simlinks
-
+# install_tmux_plugins
+install_packages
