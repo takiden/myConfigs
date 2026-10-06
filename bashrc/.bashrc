@@ -67,6 +67,11 @@ PATH="$PATH:$(go env GOPATH)/bin"
 # export PATH="$PATH:/home/takiden/nvim-linux-x86_64/bin:/usr/local/go/bin"
 export PATH
 
+# Added by Antigravity CLI installer
+export PATH="/home/takiden/.local/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+
 # Default editor for Antigravity prompt (Ctrl+G) and shell
 export EDITOR="nvim"
 export VISUAL="nvim"

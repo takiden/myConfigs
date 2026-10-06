@@ -86,6 +86,7 @@ add_simlinks(){
   cd ~/.config && ln -s /home/takiden/nvimConfig/. nvim
 }
 
+<<<<<<< HEAD
 install_nvm(){
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
   if [ $? -eq 0 ]; then
@@ -95,6 +96,10 @@ install_nvm(){
   else
     echo "could not install NVM"
   fi
+}
+
+install_codex(){
+  curl -fsSL https://chatgpt.com/codex/install.sh | sh  
 }
 
 exit_script() {
@@ -116,7 +121,9 @@ main() {
       '6) Add dotfile symlinks' \
       '7) Install tmux plugins' \
       '8) Install packages' \
-      '9) Exit'
+      '9) Install Codex' \
+      '10) install_tmux_plugins' \
+      '99) Exit'
 
     if ! read -r -p 'Select an action [1-9]: ' selection; then
       exit_script
@@ -131,7 +138,9 @@ main() {
       6) add_simlinks ;;
       7) install_tmux_plugins ;;
       8) install_packages ;;
-      9) exit_script ;;
+      9) install_codex ;;
+      10) install_tmux_plugins ;;
+      99) exit_script ;;
       *) echo 'Invalid selection. Enter a number from 1 to 9.' ;;
     esac
   done
@@ -140,3 +149,5 @@ main() {
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
   main
 fi
+
+
